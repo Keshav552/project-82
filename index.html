@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title> adv-82</title>
+  
+  
+  
+  
+<style>
+.body_backgorund {
+    background-image: url("https://i.postimg.cc/63cjmfvH/bg1.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  body{
+    cursor: pointer;
+  }
+  h1
+  {
+      color: red; 
+      font-size: 40px;
+  }
+  #myCanvas
+  {
+      border-width:10px;
+      background-color: white; 
+      border-style:ridge;
+  }
+
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 42px;
+    font-size: 16px;
+  }
+
+  input
+  {
+    margin-right: 20px;
+  }
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <html>
+<head>  
+<link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript">
+</script>
+
+</head>
+<body class="body_backgorund">
+
+<div align="center">
+<h1>Paint</h1>
+
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+        <br><br >
+
+<!--Additional activity -->
+        <span>Radius - </span>  
+        <input type="text" id="radius">
+
+        <span>Color - </span>  
+        <input type="text" id="color">
+        
+        <span>Width Of the line  - </span>  
+        <input type="text" id="width_of_line">
+        
+        <button onclick="clearArea();">Clear Area</button>
+
+    </div>
+<script src="main.js"></script>
+</body>
+</html>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+
+  
+      <script id="rendered-js" >
+var mouseEvent = "empty";
+
+
+canvas = document.getElementById('myCanvas');
+ctx = canvas.getContext("2d");
+
+color = "black";
+width_of_line = 2;
+canvas.addEventListener("mousedown", my_mousedown);
+
+function my_mousedown(e)
+{
+
+  color = document.getElementById("color").value;
+  width_of_line = document.getElementById("width_of_line").value;
+  radius = document.getElementById("radius").value;
+  mouseEvent = "mouseDown";
+}
+
+canvas.addEventListener("mousemove", my_mousemove);
+function my_mousemove(e)
+{
+  current_position_of_mouse_x = e.clientX - canvas.offsetLeft;
+  current_position_of_mouse_y = e.clientY - canvas.offsetTop;
+
+  if (mouseEvent == "mouseDown") {
+    console.log("Current position of x and y coordinates = ");
+    console.log("x  = " + current_position_of_mouse_x + "y = " + current_position_of_mouse_y);
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width_of_line;
+    ctx.arc(current_position_of_mouse_x, current_position_of_mouse_y, radius, 0, 2 * Math.PI);
+    ctx.stroke();
+  }
+
+}
+
+canvas.addEventListener("mouseup", my_mouseup);
+function my_mouseup(e)
+{
+  mouseEvent = "mouseUP";
+}
+
+canvas.addEventListener("mouseleave", my_mouseleave);
+function my_mouseleave(e)
+{
+  mouseEvent = "mouseleave";
+}
+
+
+//Additional Activity
+function clearArea() {
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
